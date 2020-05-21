@@ -9,9 +9,9 @@ namespace SongCollector.Data
         {
             var songs = new List<Song>
             {
-                new Song { Id = 0, Name = "Oblivion", Artist = "Grimes", Year = 2012 },
-                new Song { Id = 1, Name = "Too Late", Artist = "Washed Out", Year = 2020 },
-                new Song { Id = 2, Name = "Oblivion", Artist = "Grimes", Year = 2012 }
+                new Song { Id = 1, Name = "Oblivion", Artist = "Grimes", Year = 2012 },
+                new Song { Id = 2, Name = "Too Late", Artist = "Washed Out", Year = 2020 },
+                new Song { Id = 3, Name = "They're Back", Artist = "Yuzo Koshiro", Year = 2020 }
             };
 
             return songs;
@@ -19,7 +19,7 @@ namespace SongCollector.Data
 
         public Song GetSongById(int id)
         {
-            return new Song { Id = 0, Name = "Oblivion", Artist = "Grimes", Year = 2012 };
+            return new Song { Id = 1, Name = "Oblivion", Artist = "Grimes", Year = 2012 };
         }
     }
 }

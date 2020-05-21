@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SongCollector.Data;
 
 namespace SongCollector
 {
@@ -26,6 +27,8 @@ namespace SongCollector
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddScoped<ISongCollectorRepo, MockSongCollectorRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
