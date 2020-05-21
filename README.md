@@ -1,3 +1,3 @@
 # SongCollector
 
-Just learning how to build .NET Core MVC REST API.
+Just learning how to build a .NET Core MVC REST API.
