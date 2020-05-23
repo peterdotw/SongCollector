@@ -19,7 +19,7 @@ namespace SongCollector.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Song>> GetAllSongs()
         {
-            var songItems = _repository.GetSongs();
+            var songItems = _repository.GetAllSongs();
 
             return Ok(songItems);
         }

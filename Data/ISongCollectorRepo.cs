@@ -5,7 +5,7 @@ namespace SongCollector.Data
 {
     public interface ISongCollectorRepo
     {
-        IEnumerable<Song> GetSongs();
+        IEnumerable<Song> GetAllSongs();
         Song GetSongById(int id);
     }
 }

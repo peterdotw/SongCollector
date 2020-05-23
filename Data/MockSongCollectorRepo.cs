@@ -5,7 +5,7 @@ namespace SongCollector.Data
 {
     public class MockSongCollectorRepo : ISongCollectorRepo
     {
-        public IEnumerable<Song> GetSongs()
+        public IEnumerable<Song> GetAllSongs()
         {
             var songs = new List<Song>
             {

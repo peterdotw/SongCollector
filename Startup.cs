@@ -41,7 +41,7 @@ namespace SongCollector
 
             services.AddControllers();
 
-            services.AddScoped<ISongCollectorRepo, MockSongCollectorRepo>();
+            services.AddScoped<ISongCollectorRepo, SqlSongCollectorRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
