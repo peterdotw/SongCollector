@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SongCollector.Data;
+using SongCollector.Dtos;
 using SongCollector.Models;
 
 namespace SongCollector.Controllers
@@ -10,26 +12,33 @@ namespace SongCollector.Controllers
     public class SongsController : ControllerBase
     {
         private readonly ISongCollectorRepo _repository;
+        private readonly IMapper _mapper;
 
-        public SongsController(ISongCollectorRepo repository)
+        public SongsController(ISongCollectorRepo repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Song>> GetAllSongs()
+        public ActionResult<IEnumerable<SongReadDto>> GetAllSongs()
         {
             var songItems = _repository.GetAllSongs();
 
-            return Ok(songItems);
+            return Ok(_mapper.Map<IEnumerable<SongReadDto>>(songItems));
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Song> GetSongById(int id)
+        public ActionResult<SongReadDto> GetSongById(int id)
         {
             var songItem = _repository.GetSongById(id);
 
-            return Ok(songItem);
+            if (songItem != null)
+            {
+                return Ok(_mapper.Map<SongReadDto>(songItem));
+            }
+
+            return NotFound();
         }
     }
 }
