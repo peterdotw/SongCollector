@@ -28,7 +28,7 @@ namespace SongCollector.Controllers
             return Ok(_mapper.Map<IEnumerable<SongReadDto>>(songItems));
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetSongById")]
         public ActionResult<SongReadDto> GetSongById(int id)
         {
             var songItem = _repository.GetSongById(id);
@@ -39,6 +39,18 @@ namespace SongCollector.Controllers
             }
 
             return NotFound();
+        }
+
+        [HttpPost]
+        public ActionResult<SongReadDto> CreateSong(SongCreateDto songCreateDto)
+        {
+            var songModel = _mapper.Map<Song>(songCreateDto);
+            _repository.CreateSong(songModel);
+            _repository.SaveChanges();
+
+            var songReadDto = _mapper.Map<SongReadDto>(songModel);
+
+            return CreatedAtRoute(nameof(GetSongById), new { Id = songReadDto.Id }, songReadDto);
         }
     }
 }

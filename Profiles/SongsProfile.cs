@@ -9,6 +9,7 @@ namespace SongCollector.Profiles
         public SongsProfile()
         {
             CreateMap<Song, SongReadDto>();
+            CreateMap<SongCreateDto, Song>();
         }
     }
 }
