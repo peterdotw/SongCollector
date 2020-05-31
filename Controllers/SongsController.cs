@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using SongCollector.Data;
 using SongCollector.Dtos;
@@ -64,6 +65,33 @@ namespace SongCollector.Controllers
             }
 
             _mapper.Map(songUpdateDto, songModelFromRepo);
+
+            _repository.UpdateSong(songModelFromRepo);
+
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
+
+        [HttpPatch("{id}")]
+        public ActionResult PartialUpdateSong(int id, JsonPatchDocument<SongUpdateDto> patchDoc)
+        {
+            var songModelFromRepo = _repository.GetSongById(id);
+
+            if (songModelFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            var songToPatch = _mapper.Map<SongUpdateDto>(songModelFromRepo);
+            patchDoc.ApplyTo(songToPatch, ModelState);
+
+            if (!TryValidateModel(songToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            _mapper.Map(songToPatch, songModelFromRepo);
 
             _repository.UpdateSong(songModelFromRepo);
 

@@ -11,6 +11,7 @@ namespace SongCollector.Profiles
             CreateMap<Song, SongReadDto>();
             CreateMap<SongCreateDto, Song>();
             CreateMap<SongUpdateDto, Song>();
+            CreateMap<Song, SongUpdateDto>();
         }
     }
 }
