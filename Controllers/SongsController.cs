@@ -99,5 +99,22 @@ namespace SongCollector.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteSong(int id)
+        {
+            var songModelFromRepo = _repository.GetSongById(id);
+
+            if (songModelFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            _repository.DeleteSong(songModelFromRepo);
+
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
     }
 }

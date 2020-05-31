@@ -24,6 +24,16 @@ namespace SongCollector.Data
             _context.Songs.Add(sng);
         }
 
+        public void DeleteSong(Song sng)
+        {
+            if (sng == null)
+            {
+                throw new ArgumentNullException(nameof(sng));
+            }
+
+            _context.Songs.Remove(sng);
+        }
+
         public IEnumerable<Song> GetAllSongs()
         {
             return _context.Songs.ToList();

@@ -10,6 +10,11 @@ namespace SongCollector.Data
             throw new System.NotImplementedException();
         }
 
+        public void DeleteSong(Song sng)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public IEnumerable<Song> GetAllSongs()
         {
             var songs = new List<Song>

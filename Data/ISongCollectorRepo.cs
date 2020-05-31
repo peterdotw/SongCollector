@@ -11,5 +11,6 @@ namespace SongCollector.Data
         Song GetSongById(int id);
         void CreateSong(Song sng);
         void UpdateSong(Song sng);
+        void DeleteSong(Song sng);
     }
 }
