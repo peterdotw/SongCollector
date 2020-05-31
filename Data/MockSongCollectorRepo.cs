@@ -31,5 +31,10 @@ namespace SongCollector.Data
         {
             throw new System.NotImplementedException();
         }
+
+        public void UpdateSong(Song sng)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

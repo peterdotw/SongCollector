@@ -52,5 +52,24 @@ namespace SongCollector.Controllers
 
             return CreatedAtRoute(nameof(GetSongById), new { Id = songReadDto.Id }, songReadDto);
         }
+
+        [HttpPut("{id}")]
+        public ActionResult UpdateSong(int id, SongUpdateDto songUpdateDto)
+        {
+            var songModelFromRepo = _repository.GetSongById(id);
+
+            if (songModelFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(songUpdateDto, songModelFromRepo);
+
+            _repository.UpdateSong(songModelFromRepo);
+
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
     }
 }

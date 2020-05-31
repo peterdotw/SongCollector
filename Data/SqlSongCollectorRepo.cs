@@ -38,5 +38,10 @@ namespace SongCollector.Data
         {
             return (_context.SaveChanges() >= 0);
         }
+
+        public void UpdateSong(Song sng)
+        {
+
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace SongCollector.Data
         IEnumerable<Song> GetAllSongs();
         Song GetSongById(int id);
         void CreateSong(Song sng);
+        void UpdateSong(Song sng);
     }
 }
