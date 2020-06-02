@@ -5,11 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 using SongCollector.Data;
 using SongCollector.Dtos;
 using SongCollector.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SongCollector.Controllers
 {
-    [Route("api/songs")]
     [ApiController]
+    [Route("api/songs")]
     public class SongsController : ControllerBase
     {
         private readonly ISongCollectorRepo _repository;
@@ -42,6 +43,7 @@ namespace SongCollector.Controllers
             return NotFound();
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult<SongReadDto> CreateSong(SongCreateDto songCreateDto)
         {
@@ -54,6 +56,7 @@ namespace SongCollector.Controllers
             return CreatedAtRoute(nameof(GetSongById), new { Id = songReadDto.Id }, songReadDto);
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public ActionResult UpdateSong(int id, SongUpdateDto songUpdateDto)
         {
@@ -73,6 +76,7 @@ namespace SongCollector.Controllers
             return NoContent();
         }
 
+        [Authorize]
         [HttpPatch("{id}")]
         public ActionResult PartialUpdateSong(int id, JsonPatchDocument<SongUpdateDto> patchDoc)
         {
@@ -100,6 +104,7 @@ namespace SongCollector.Controllers
             return NoContent();
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public ActionResult DeleteSong(int id)
         {
