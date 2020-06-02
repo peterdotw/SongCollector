@@ -1,3 +1,3 @@
 # SongCollector
 
-Just learning how to build a .NET Core MVC REST API.
+Song collection .NET Core MVC REST API with implemented JWT authorization using Azure Active Directory.
